@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("img").forEach((img, index) => {
+    if (!img.hasAttribute("loading")) {
+      img.setAttribute("loading", index < 6 ? "eager" : "lazy");
+    }
+    if (!img.hasAttribute("decoding")) {
+      img.setAttribute("decoding", "async");
+    }
+    if (!img.hasAttribute("fetchpriority") && index < 3) {
+      img.setAttribute("fetchpriority", "high");
+    }
+  });
+
   const tabs = Array.from(document.querySelectorAll(".order-tab"));
   const ordersList = document.querySelector(".orders-list");
 
